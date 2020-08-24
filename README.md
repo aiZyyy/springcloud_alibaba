@@ -1,0 +1,2 @@
+# springcloud_alibaba
+对于原来的微服务工程进行版本升级,注册中心采用nacos,微服务依赖主要采用alibaba
