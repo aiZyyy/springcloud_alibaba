@@ -1,6 +1,7 @@
 package com.zy.common.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.zy.common.kits.BeanKit;
 import com.zy.common.kits.DozerBeanKit;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpMethod;
@@ -62,7 +63,7 @@ public class MockUtil {
     private static org.springframework.test.web.servlet.MockMvc mvc;
 
     static {
-        mvc = MockMvcBuilders.webAppContextSetup((WebApplicationContext) BeanUtil.getApplicationContext()).build();
+        mvc = MockMvcBuilders.webAppContextSetup((WebApplicationContext) BeanKit.getApplicationContext()).build();
     }
 
     public static SixiMockBuilder mock() {

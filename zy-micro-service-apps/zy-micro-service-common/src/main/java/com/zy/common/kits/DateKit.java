@@ -1,4 +1,4 @@
-package com.zy.common.utils;
+package com.zy.common.kits;
 
 
 import lombok.SneakyThrows;
@@ -13,8 +13,8 @@ import java.util.Date;
  * @author ZY
  * Created on 2017/6/13 10:52.
  */
-public class DateUtil {
-    private DateUtil() {}
+public class DateKit {
+    private DateKit() {}
 
     private static final String SIMPLE_FORMAT_VALUE = "yyyy-MM-dd HH:mm:ss";
     private static final String DATE_FORMAT_VALUE = "yyyy-MM-dd";
