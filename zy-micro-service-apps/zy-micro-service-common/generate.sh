@@ -60,8 +60,8 @@ cat > generator.xml <<EOF
         <property name="beginningDelimiter" value="\`"/>
         <property name="endingDelimiter" value="\`"/>
         <!--启用Lombok插件-->
-        <plugin type="com.itzy.commonplugin.LombokPlugin"/>
-        <commentGenerator type="com.itzy.commonplugin.CommentGenerator">
+        <plugin type="com.zy.common.plugin.LombokPlugin"/>
+        <commentGenerator type="com.zy.common.plugin.CommentGenerator">
             <!--去除自动生成的注释-->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
