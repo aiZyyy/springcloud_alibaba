@@ -2,24 +2,24 @@
 # 服务组名称(包名第三段)
 GROUP='modules'
 # 服务名称(包名第四段)
-SERVER='angle'
+SERVER='water'
 # 指定对应文件生成目录(如果不是微服务项目 请自行修改完整包名)
 TARGET_ENTITY="com.hd.rtu.${GROUP}.${SERVER}.entity"
 TARGET_MAPPER="com.hd.rtu.${GROUP}.${SERVER}.mapper"
 
 # 数据库地址
-DB_HOST="172.16.22.208"
+DB_HOST="*********"
 # 数据库端口
-DB_PORT=3316
+DB_PORT=3306
 # 数据库名称
-DB_NAME="irtuv20"
+DB_NAME="*****"
 # 数据库用户名
 DB_USER="root"
 # 数据库密码
-DB_PASS="123456789Aa"
+DB_PASS="*******"
 
 # 表名 多个表用空格分隔 所有的表用 % 代替
-TABLES='rtu_angle_current'
+TABLES='*******'
 
 ###############################
 # 请勿修改以下部分代码 除非你看得懂 #
