@@ -43,6 +43,7 @@
         <logstash-logback.version>5.3</logstash-logback.version>
         <knife4j.version>2.0.4</knife4j.version>
         <nimbus-jose-jwt.version>8.16</nimbus-jose-jwt.version>
+        <okhttp.version>3.10.0</okhttp.version>
     </properties>
 
     <dependencies>
@@ -68,10 +69,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
             <!--Spring Cloud 相关依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
