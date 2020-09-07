@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${SPRING_CLOUD_NACOS_URI:http://localhost:8848}
+      config:
+        server-addr: ${SPRING_CLOUD_NACOS_URI:http://localhost:8848}
+        file-extension: yaml
+  profiles:
+    active: ${SPRING_CLOUD_CONFIG_PROFILE:local}
+    application:
+      name: @project.artifactId@
+  main:
+    allow-bean-definition-overriding: true
