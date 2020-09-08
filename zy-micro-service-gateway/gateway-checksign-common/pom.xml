@@ -7,7 +7,10 @@
     <groupId>com.zy</groupId>
     <artifactId>gateway-checksign-common</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>../core-route-service</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
     <description>fishCoder签名SDK</description>
@@ -36,7 +39,6 @@
         <json.version>20190722</json.version>
         <codec.version>1.13</codec.version>
         <commons.lang3.version>3.9</commons.lang3.version>
-        <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <dependencies>
