@@ -1,14 +1,16 @@
 spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${SPRING_CLOUD_NACOS_URI:http://localhost:8848}
-      config:
-        server-addr: ${SPRING_CLOUD_NACOS_URI:http://localhost:8848}
-        file-extension: yaml
   profiles:
     active: ${SPRING_CLOUD_CONFIG_PROFILE:local}
     application:
       name: @project.artifactId@
   main:
     allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
+      config:
+        server-addr: http://localhost:8848
+        file-extension: yaml
+        shared-dataids: application.yaml,application-dev.yaml,application-local.yaml,application-prod.yaml,application-test.yaml
+        refreshable-dataids: application.yaml,application-dev.yaml,application-local.yaml,application-prod.yaml,application-test.yaml
