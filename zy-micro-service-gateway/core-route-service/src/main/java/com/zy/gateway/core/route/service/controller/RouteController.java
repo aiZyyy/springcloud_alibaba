@@ -1,8 +1,8 @@
-package com.zy.core.route.service.controller;
+package com.zy.gateway.core.route.service.controller;
 
-import com.zy.core.route.service.domain.entity.GatewayRoute;
-import com.zy.core.route.service.domain.form.*;
-import com.zy.core.route.service.service.GatewayRouteService;
+import com.zy.gateway.core.route.service.domain.entity.GatewayRoute;
+import com.zy.gateway.core.route.service.service.GatewayRouteService;
+import com.zy.gateway.core.route.service.domain.form.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

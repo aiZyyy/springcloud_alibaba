@@ -5,21 +5,21 @@ GROUP='modules'
 SERVER='water'
 # 指定对应文件生成目录(如果不是微服务项目 请自行修改完整包名)
 TARGET_ENTITY="com.hd.rtu.${GROUP}.${SERVER}.entity"
-TARGET_MAPPER="com.hd.rtu.${GROUP}.${SERVER}.mapper"
+TARGET_MAPPER="com.hd.rtu.${GROUP}.${SERVER}.com.zy.gateway.core.route.service.mapper"
 
 # 数据库地址
-DB_HOST="*********"
+DB_HOST="172.16.22.208"
 # 数据库端口
-DB_PORT=3306
+DB_PORT=3316
 # 数据库名称
-DB_NAME="*****"
+DB_NAME="irtuv20"
 # 数据库用户名
 DB_USER="root"
 # 数据库密码
-DB_PASS="*******"
+DB_PASS="123456789Aa"
 
 # 表名 多个表用空格分隔 所有的表用 % 代替
-TABLES='*******'
+TABLES='auth_role_rule'
 
 ###############################
 # 请勿修改以下部分代码 除非你看得懂 #
@@ -60,8 +60,8 @@ cat > generator.xml <<EOF
         <property name="beginningDelimiter" value="\`"/>
         <property name="endingDelimiter" value="\`"/>
         <!--启用Lombok插件-->
-        <plugin type="com.zy.common.plugin.LombokPlugin"/>
-        <commentGenerator type="com.zy.common.plugin.CommentGenerator">
+        <plugin type="com.zy.apps.common.plugin.LombokPlugin"/>
+        <commentGenerator type="com.zy.apps.common.plugin.CommentGenerator">
             <!--去除自动生成的注释-->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>

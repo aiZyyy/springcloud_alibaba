@@ -266,7 +266,7 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>com.zy</groupId>
+                        <groupId>com.zy.apps</groupId>
                         <artifactId>common-plugin</artifactId>
                         <version>1.0-SNAPSHOT</version>
                     </dependency>

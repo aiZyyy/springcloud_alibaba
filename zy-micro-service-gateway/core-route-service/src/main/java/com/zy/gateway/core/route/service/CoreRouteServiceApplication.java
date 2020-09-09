@@ -1,4 +1,4 @@
-package com.zy.core.route.service;
+package com.zy.gateway.core.route.service;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

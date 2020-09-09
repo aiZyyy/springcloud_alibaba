@@ -1,4 +1,4 @@
-package com.zy.core.route.service.domain.entity;
+package com.zy.gateway.core.route.service.domain.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

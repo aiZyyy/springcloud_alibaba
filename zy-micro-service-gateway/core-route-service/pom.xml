@@ -2,6 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <groupId>com.zy.gateway</groupId>
+    <artifactId>core-route-service</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>${project.artifactId}</name>
+    <description>fishCoder路由服务</description>
+
     <parent>
         <groupId>com.zy.base</groupId>
         <artifactId>zy-micro-service-parent</artifactId>
@@ -9,12 +17,6 @@
         <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.zy.gateway</groupId>
-    <artifactId>core-route-service</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>${project.artifactId}</name>
-    <description>fishCoder路由服务</description>
 
     <properties>
         <fastjson.version>1.2.73</fastjson.version>

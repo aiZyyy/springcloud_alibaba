@@ -1,4 +1,4 @@
-package com.zy.core.route.service.kit;
+package com.zy.gateway.core.route.service.kit;
 
 import com.alibaba.fastjson.JSON;
 import lombok.SneakyThrows;

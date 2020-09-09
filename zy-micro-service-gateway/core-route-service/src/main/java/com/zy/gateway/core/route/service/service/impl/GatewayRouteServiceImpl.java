@@ -1,14 +1,14 @@
-package com.zy.core.route.service.service.impl;
+package com.zy.gateway.core.route.service.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.zy.core.route.service.domain.entity.GatewayRoute;
-import com.zy.core.route.service.domain.entity.GatewayRouteExample;
-import com.zy.core.route.service.domain.form.*;
-import com.zy.core.route.service.kit.DozerBeanKit;
-import com.zy.core.route.service.mapper.GatewayRouteMapper;
-import com.zy.core.route.service.service.GatewayRouteService;
+import com.zy.gateway.core.route.service.domain.entity.GatewayRoute;
+import com.zy.gateway.core.route.service.domain.entity.GatewayRouteExample;
+import com.zy.gateway.core.route.service.domain.form.*;
+import com.zy.gateway.core.route.service.kit.DozerBeanKit;
+import com.zy.gateway.core.route.service.mapper.GatewayRouteMapper;
+import com.zy.gateway.core.route.service.service.GatewayRouteService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.FilterDefinition;

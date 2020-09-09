@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Inherited
 @Documented
 @EnableAsync
-@MapperScan("com.zy.**.mapper")
+@MapperScan("com.zy.**.com.zy.gateway.core.route.service.mapper")
 @ComponentScan("com.zy")
 @EnableFeignClients("com.zy")
 @SpringCloudApplication

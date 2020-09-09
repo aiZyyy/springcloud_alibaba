@@ -12,7 +12,6 @@
     <name>${project.artifactId}</name>
     <description>fishCoder签名SDK</description>
 
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
