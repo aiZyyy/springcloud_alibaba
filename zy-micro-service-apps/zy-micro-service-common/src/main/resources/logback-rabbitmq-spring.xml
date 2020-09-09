@@ -150,7 +150,7 @@
     <logger name="com.zy" level="DEBUG"/>
     <logger name="org.springframework.data.mongodb.core" level="DEBUG"/>
     <!-- 异常日志记录 -->
-    <logger name="com.zy.common.exception.handler" level="DEBUG">
+    <logger name="com.zy.apps.common.exception.handler" level="DEBUG">
         <appender-ref ref="EXCEPTION_FILE"/>
     </logger>
     <!-- 全局日志记录 -->

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zy</groupId>
+    <groupId>com.zy.apps</groupId>
     <artifactId>zy-micro-service-app-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -13,7 +13,7 @@
     <description>fishCoder微服务应用父项目</description>
 
     <parent>
-        <groupId>com.zy</groupId>
+        <groupId>com.zy.base</groupId>
         <artifactId>zy-micro-service-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath/>
@@ -57,7 +57,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.zy</groupId>
+            <groupId>com.zy.apps</groupId>
             <artifactId>zy-micro-service-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
