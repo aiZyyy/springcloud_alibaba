@@ -8,15 +8,19 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         prefix: ${spring.application.name}
+        namespace: 317fcfa2-5e10-438a-b220-a5de3b05862b
         file-extension: yml
-        shared-dataids: shareconfig1.yml,shareconfig2.yml
-        refreshable-dataids: shareconfig1.yml,shareconfig2.yml
-        ext-config:
+        extension-configs:
           - data-id: shareconfig3.yml
             group: SHARE3_GROUP
             refresh: true
           - data-id: shareconfig4.yml
             group: SHARE4_GROUP
+            refresh: true
+        shared-configs:
+          - data-id: shareconfig1.yml
+            refresh: true
+          - data-id: shareconfig2.yml
             refresh: true
 
 
