@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Inherited
 @Documented
 @EnableAsync
-@MapperScan("com.zy.**.com.zy.gateway.core.route.service.mapper")
+@MapperScan("com.zy.**.mapper")
 @ComponentScan("com.zy")
 @SpringBootApplication
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)

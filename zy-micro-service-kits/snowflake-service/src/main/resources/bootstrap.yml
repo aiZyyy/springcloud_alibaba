@@ -1,11 +1,16 @@
-spring.application.name: @project.artifactId@
-
-eureka.instance.instanceId: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
-
-spring.cloud.config.fail-fast: ${SPRING_CLOUD_CONFIG_FAIL-FAST:true}
-spring.cloud.config.retry.max-attempts: ${SPRING_CLOUD_CONFIG_RETRY_MAX-ATTEMPTS:60}
-spring.cloud.config.retry.max-interval: ${SPRING_CLOUD_CONFIG_RETRY_MAX-INTERVAL:10000}
-spring.cloud.config.retry.initial-interval: ${SPRING_CLOUD_CONFIG_RETRY_INITIAL-INTERVAL:1000}
-
-spring.cloud.config.profile: ${SPRING_CLOUD_CONFIG_PROFILE:local}
-spring.cloud.config.uri: ${SPRING_CLOUD_CONFIG_URI:http://localhost:8083}
+spring:
+  application:
+    name: @project.artifactId@
+#  profiles: local
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: http://localhost:8848
+      config:
+        namespace: 89357605-6ea1-4627-a85b-4c2069d96474
+        group: DEFAULT_GROUP
+        file-extension: yaml
+#        extension-configs:
+#          dataId: application.yaml
+#          refresh: true

@@ -12,5 +12,5 @@ spring:
       config:
         server-addr: http://localhost:8848
         file-extension: yaml
-        shared-dataids: application.yaml,application-dev.yaml,application-local.yaml,application-prod.yaml,application-test.yaml
-        refreshable-dataids: application.yaml,application-dev.yaml,application-local.yaml,application-prod.yaml,application-test.yaml
+        shared-dataids: application.yaml
+        refreshable-dataids: application.yaml
