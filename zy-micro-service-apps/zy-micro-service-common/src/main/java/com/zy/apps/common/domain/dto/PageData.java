@@ -1,4 +1,4 @@
-package com.zy.apps.common.dto;
+package com.zy.apps.common.domain.dto;
 
 import com.zy.apps.common.utils.AssertUtil;
 import lombok.AllArgsConstructor;
