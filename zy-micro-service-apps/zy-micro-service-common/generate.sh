@@ -2,10 +2,10 @@
 # 服务组名称(包名第三段)
 GROUP='modules'
 # 服务名称(包名第四段)
-SERVER='water'
+SERVER='rtu'
 # 指定对应文件生成目录(如果不是微服务项目 请自行修改完整包名)
 TARGET_ENTITY="com.hd.rtu.${GROUP}.${SERVER}.entity"
-TARGET_MAPPER="com.hd.rtu.${GROUP}.${SERVER}.com.zy.gateway.core.route.service.mapper"
+TARGET_MAPPER="com.hd.rtu.${GROUP}.${SERVER}.mapper"
 
 # 数据库地址
 DB_HOST="172.16.22.208"
@@ -19,7 +19,7 @@ DB_USER="root"
 DB_PASS="123456789Aa"
 
 # 表名 多个表用空格分隔 所有的表用 % 代替
-TABLES='auth_role_rule'
+TABLES='dev_term_upgrade_pkg'
 
 ###############################
 # 请勿修改以下部分代码 除非你看得懂 #
