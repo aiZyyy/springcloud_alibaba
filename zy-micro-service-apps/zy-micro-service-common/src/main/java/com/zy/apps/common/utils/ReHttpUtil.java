@@ -184,6 +184,10 @@ public class ReHttpUtil {
         try {
             if (login(loginAddress, loginNvps, result, httpclient)) return result;
             //登录完成后请求数据
+            if (StringUtils.isBlank(requestAddress)) {
+                result.error500("get请求地址转换异常!");
+                return result;
+            }
             HttpGet requestGet = new HttpGet(requestAddress);
             CloseableHttpResponse requestResponse = httpclient.execute(requestGet);
             return getStringResult(result, requestResponse);
@@ -291,7 +295,12 @@ public class ReHttpUtil {
                 } else {
                     buffer.append("&");
                 }
-                buffer.append(entry.getKey()).append("=").append(entry.getValue());
+                try {
+                    buffer.append(entry.getKey()).append("=").append(URLEncoder.encode(entry.getValue(), "utf-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    return null;
+                }
             }
         }
         return url + buffer.toString();
