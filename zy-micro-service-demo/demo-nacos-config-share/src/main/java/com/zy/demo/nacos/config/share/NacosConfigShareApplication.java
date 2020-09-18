@@ -21,16 +21,16 @@ public class NacosConfigShareApplication {
     @Value("${nacos.share}")
     private String share;
 
-    @Value("${nacos}")
-    private String shareConfig1;
+//    @Value("${nacos}")
+//    private String shareConfig1;
 
     @RequestMapping("/getValue")
     public String getValue() {
         return share;
     }
 
-    @RequestMapping("/getShare1")
-    public String getShare1() {
-        return shareConfig1;
-    }
+//    @RequestMapping("/getShare1")
+//    public String getShare1() {
+//        return shareConfig1;
+//    }
 }
