@@ -47,15 +47,15 @@ public class ReHttpUtil {
     private static final String PUT_METHOD = "PUT";
     private static final String DELETE_METHOD = "DELETE";
 
-    @Value("${oldRtu.address}")
+    @Value("${oldRtu.address:127.0.0.1}")
     private String address;
     private static String initAddress;
 
-    @Value("${oldRtu.username}")
+    @Value("${oldRtu.username:admin}")
     private String username;
     private static String initUsername;
 
-    @Value("${oldRtu.password}")
+    @Value("${oldRtu.password:123456}")
     private String password;
     private static String initPassword;
 
