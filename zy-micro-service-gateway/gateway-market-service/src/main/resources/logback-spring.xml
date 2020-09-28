@@ -14,7 +14,7 @@
     <property name="CONSOLE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN}) --- %clr(${PID:- }){magenta} [%thread] %clr(%logger{36}){cyan} : %msg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
     <!--日志路径-->
-    <property name="LOG_ROOT_PATH" value="${SIXI_LOG_DIR:-${user.dir}/logs}/${APP_NAME:-boot}/"/>
+    <property name="LOG_ROOT_PATH" value="${ZY_LOG_DIR:-${user.dir}/logs}/${APP_NAME:-boot}/"/>
     <!--日志分割-->
     <!--最大保存历史-->
     <property name="MAX_HISTORY" value="30"/>

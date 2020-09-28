@@ -6,14 +6,14 @@ zy-micro-services:
     discovery-service: 8081
     config-service: 8082
     #路由服务
-    gateway-marker-service: 8100
-    gateway-route-service: 8101
-    gateway-service: 8102
+    gateway-market-service: 8101
+    gateway-route-service: 8102
+    gateway-service: 8103
     #kits服务
-    snowflake-service: 8200
+    snowflake-service: 8201
     #demo
-    demo-nacos-config-share: 9000
-    demo-client-service: 9001
+    demo-nacos-config-share: 9001
+    demo-client-service: 9002
   # 数据库
   database:
     gateway-route-service: gateway_route
