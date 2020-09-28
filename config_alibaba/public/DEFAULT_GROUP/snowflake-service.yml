@@ -1,0 +1,2 @@
+server.port: ${zy-micro-services.ports.snowflake-service:0}
+spring.datasource.name: ${zy-micro-services.database.snowflake-service:sys}

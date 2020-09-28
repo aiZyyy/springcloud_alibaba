@@ -1,0 +1,164 @@
+zy-micro-services:
+  # 端口号
+  ports:
+    # 核心服务
+    api-gateway: 8080
+    #路由服务
+    core-route-service: 8101
+    gateway-market-service: 8102
+    gateway-service: 8103
+    #kits服务
+    snowflake-service: 8201
+    #demo
+    springcloud-demo: 9001
+  # 数据库
+  database:
+    core-route-service: core_route
+    snowflake-service: snowflake
+
+##############################
+# 以下为微服务公用配置 请勿修改
+##############################
+# 微服务基础配置
+zy-micro-service:
+  local: localhost
+  hosts:
+    api-gateway: gateway
+  ports:
+    api-gateway: 8080
+  url: ${ZY_MICRO_SERVICE_URL:http://${zy-micro-service.hosts.api-gateway}:${zy-micro-service.ports.api-gateway}}
+
+# 微服务公共配置
+zy-micro-service-common:
+  web-mvc-configurer:
+    enabled: true
+  redis:
+    fast-json-serializer: ${ZY_MICRO_SERVICE_COMMON_REDIS_FAST_JSON_SERIALIZER:true}
+  feign:
+    debug: ${ZY_MICRO_SERVICE_COMMON_FEIGN_DEBUG:false}
+    proxy:
+      enabled: ${ZY_MICRO_SERVICE_COMMON_FEIGN_PROXY_ENABLED:true}
+      header: ${ZY_MICRO_SERVICE_COMMON_FEIGN_PROXY_HEADER:Cookie,Authorization}
+  session:
+    create:
+      policy: ${ZY_MICRO_SERVICE_COMMON_SESSION_CREATION_POLICY:STATELESS}
+  message:
+    no-login: "用户未登录!"
+    no-permission: "您没有权限访问此接口!"
+  open:
+    url: 'https://test.open.zy.com/api'
+  tokenmanager:
+    url: 'https://api.zy.com/common-tokenmanager-service'
+  oauth:
+    url: 'https://test-oauth.cloud.zy.com'
+    #旧版oauth
+    loginPage: '/login.html'
+    #新版oauth
+    loginPages: '/logins.html'
+  logging:
+    routing-key: ${ZY_MICRO_SERVICE_COMMON_LOGGING_ROUTING_KEY:logs}
+
+# 默认端口配置
+server.port: ${ENV_PORT:${PORT:0}}
+
+# Ribbon相关配置
+ribbon:
+  ReadTimeout: ${RIBBON_READTIMEOUT:30000}
+  SocketTimeout: ${RIBBON_SOCKETTIMEOUT:30000}
+  ConnectTimeout: ${RIBBON_CONNECTTIMEOUT:5000}
+  # 关闭httpClient
+  http:
+    client:
+      enabled: ${RIBBON_HTTPCLIENT_ENABLED:false}
+  okhttp:
+    enabled: ${RIBBON_OKHTTP_ENABLED:true}
+# Feign相关配置
+feign:
+  # 关闭httpClient
+  httpclient:
+    enabled: ${FEIGN_HTTPCLIENT_ENABLED:false}
+  okhttp:
+    enabled: ${FEIGN_OKHTTP_ENABLED:true}
+  # 启用 hystrix
+  hystrix:
+    enabled: ${FEIGN_HYSTRIX_ENABLED:false}
+# 管理端点
+management:
+  endpoints:
+    web:
+      exposure:
+        # 开启所有端点
+        include:
+          - "*"
+  endpoint:
+    shutdown:
+      # 开启 Shutdown 端点
+      enabled: true
+  info:
+    git:
+      # 显示完整的GIT信息
+      mode: FULL
+# 通用的应用配置
+spring:
+  session:
+    store-type: ${SPRING_SESSION_STORE_TYPE:none}
+  servlet:
+    # 上传大小配置
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+  # Http请求相关配置
+  http:
+    # 编码配置
+    encoding:
+      force: true
+      charset: UTF-8
+  # 默认的数据库配置
+  datasource:
+    name: ${ENV_DB_NAME:${DB_NAME:sys}}
+    host: ${ENV_DB_HOST:${DB_HOST:${zy-micro-service.local}}}
+    #type: org.apache.tomcat.jdbc.pool.DataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${ENV_DB_URL:${DB_URL:jdbc:mysql://${spring.datasource.host}/${spring.datasource.name}?serverTimezone=Asia%2FShanghai&characterEncoding=utf8&allowMultiQueries=true&useSSL=false}}
+    second-url: ${ENV_DB_URL:${DB_URL:jdbc:mysql://${spring.datasource.host}/${spring.datasource.second.name}?serverTimezone=Asia%2FShanghai&characterEncoding=utf8&allowMultiQueries=true&useSSL=false}}
+    username: ${ENV_DB_USER:${DB_USER:root}}
+    password: ${ENV_DB_PASS:${DB_PASS:root}}
+    hikari:
+      minimum-idle: 20
+      maximum-pool-size: 500
+  data:
+    # 默认的Mongodb服务器
+    mongodb:
+      database: ${ENV_MONGODB_NAME:${MONGODB_NAME:test}}
+      host: ${ENV_MONGODB_HOST:${MONGODB_HOST:${zy-micro-service.local}}}
+      port: ${ENV_MONGODB_PORT:${MONGODB_PORT:27017}}
+  # 默认的Redis服务器 存储公共信息
+  redis:
+    database: ${ENV_REDIS_DB:${REDIS_DB:0}}
+    host: ${ENV_REDIS_HOST:${REDIS_HOST:${zy-micro-service.local}}}
+    port: ${ENV_REDIS_PORT:${REDIS_PORT:6379}}
+    # 默认的RabbitMQ服务器
+  rabbitmq:
+    host: ${ENV_RABBITMQ_HOST:${RABBITMQ_HOST:${zy-micro-service.local}}}
+    port: ${ENV_RABBITMQ_PORT:${RABBITMQ_PORT:5672}}
+    username: ${ENV_RABBITMQ_USER:${RABBITMQ_USER:guest}}
+    password: ${ENV_RABBITMQ_PASS:${RABBITMQ_PASS:guest}}
+    listener:
+      simple:
+        concurrency: ${RABBITMQ_LISTENER_CONCURRENCY:500}
+        max-concurrency: ${RABBITMQ_LISTENER_MAX_CONCURRENCY:1000}
+        acknowledge-mode: ${RABBITMQ_LISTENER_ACKNOWLEDGE_MODE:MANUAL}
+  cloud:
+    stream:
+      default:
+        consumer:
+          concurrency: ${SPRING_CLOUD_STREAM_DEFAULT_CONSUMER_CONCURRENCY:200}
+    nacos:
+      discovery:
+        server-addr: ${SPRING_CLOUD_NACOS_URI:http://localhost:8848}
+info:
+  app:
+    name: ${spring.application.name}
+  company:
+    name: zy
+#logging.config: ${ENV_LOGGING_CONFIG:${LOGGING_CONFIG:classpath:logback-rabbitmq-spring.xml}}

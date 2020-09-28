@@ -14,7 +14,7 @@
     <property name="CONSOLE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN}) --- %clr(${PID:- }){magenta} [%thread] %clr(%logger{36}){cyan} : %msg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
     <!--日志路径-->
-    <property name="LOG_ROOT_PATH" value="${SIXI_LOG_DIR:-${user.dir}/logs}/${APP_NAME:-boot}/"/>
+    <property name="LOG_ROOT_PATH" value="${ZY_LOG_DIR:-${user.dir}/logs}/${APP_NAME:-boot}/"/>
     <!--日志分割-->
     <!--最大保存历史-->
     <property name="MAX_HISTORY" value="30"/>
@@ -123,10 +123,10 @@
     </appender>
 
     <!-- 调试日志记录 -->
-    <logger name="com.sixi" level="DEBUG"/>
+    <logger name="com.zy" level="DEBUG"/>
     <logger name="org.springframework.data.mongodb.core" level="DEBUG"/>
     <!-- 异常日志记录 -->
-    <logger name="com.sixi.micro.common.exception.handler" level="DEBUG">
+    <logger name="com.zy.apps.common.exception.handler" level="DEBUG">
         <appender-ref ref="EXCEPTION_FILE"/>
     </logger>
     <!-- 全局日志记录 -->

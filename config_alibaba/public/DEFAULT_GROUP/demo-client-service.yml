@@ -1,0 +1,2 @@
+server:
+    port: ${zy-micro-services.ports.demo-client-service:0}

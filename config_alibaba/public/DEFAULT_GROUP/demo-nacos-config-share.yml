@@ -1,0 +1,4 @@
+server:
+    port: ${zy-micro-services.ports.demo-nacos-config-share:0}
+nacos: 
+    share: nacos-config-share

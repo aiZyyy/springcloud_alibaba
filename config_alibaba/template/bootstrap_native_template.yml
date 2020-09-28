@@ -1,0 +1,35 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: @project.artifactId@
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${SPRING_CLOUD_NACOS_URI:http://localhost:8848}
+      config:
+#        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        prefix: ${spring.application.name}
+        #namespace: 317fcfa2-5e10-438a-b220-a5de3b05862b
+        file-extension: yml
+        shared-configs:
+          - dataId: application.yml
+            group: COMMON_CONFIG
+            refresh: true
+          - dataId: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+            group: COMMON_CONFIG
+        #extension-configs:
+        #- data-id: shareconfig3.yml
+        #group: SHARE3_GROUP
+        #refresh: true
+        #- data-id: shareconfig4.yml
+        #group: SHARE4_GROUP
+        # refresh: true
+
+
+
+
+

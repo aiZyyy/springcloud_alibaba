@@ -1,0 +1,15 @@
+# 基础信息
+zy-micro-service:
+  local: localhost
+  hosts:
+    api-gateway: ${zy-micro-service.local}
+## MySQL
+DB_HOST: ${zy-micro-service.local}
+DB_PASS: root
+## Redis
+REDIS_HOST: ${zy-micro-service.local}
+REDIS_DB: 2
+#RabbitMQ
+RABBITMQ_HOST: ${zy-micro-service.local}
+# MongoDB
+#MONGODB_HOST: dev.mongodb.i.sixi.com

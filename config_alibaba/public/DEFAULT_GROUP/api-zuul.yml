@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+zuul:
+  # 添加代理的相关头信息
+  add-proxy-headers: true
+  # 代理时需要过滤的Header头 默认值为: "Cookie", "Set-Cookie", "Authorization"
+  # 留空代表传递所有的头
+  sensitive-headers:
+# security:
+#   oauth2:
+#     client:
+#       access-token-uri: http://${sixi-micro-service.hosts.api-gateway}:${sixi-micro-service.ports.api-gateway}/auth/oauth/token
+#       user-authorization-uri: http://${sixi-micro-service.hosts.api-gateway}:${sixi-micro-service.ports.api-gateway}/auth/oauth/authorize
+#       client-id: client
+#       client-secret: secret
+#     resource:
+#       token-info-uri:  http://${sixi-micro-service.hosts.oauth-service}:${sixi-micro-service.ports.oauth-service}/oauth/check_token
+fallback:
+  message: '{"status":503, "msg":"服务暂时不可用 请稍候重试!"}'
