@@ -1,7 +1,7 @@
-package com.zy.gateway.core.routeservice.mapper;
+package com.zy.gateway.routeservice.mapper;
 
-import com.zy.gateway.core.routeservice.domain.entity.GatewayRoute;
-import com.zy.gateway.core.routeservice.domain.entity.GatewayRouteExample;
+import com.zy.gateway.routeservice.domain.entity.GatewayRoute;
+import com.zy.gateway.routeservice.domain.entity.GatewayRouteExample;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.stereotype.Repository;
 

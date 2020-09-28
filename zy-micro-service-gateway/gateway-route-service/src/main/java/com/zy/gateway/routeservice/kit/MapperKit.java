@@ -1,4 +1,4 @@
-package com.zy.gateway.core.routeservice.kit;
+package com.zy.gateway.routeservice.kit;
 
 import java.util.List;
 import java.util.Optional;

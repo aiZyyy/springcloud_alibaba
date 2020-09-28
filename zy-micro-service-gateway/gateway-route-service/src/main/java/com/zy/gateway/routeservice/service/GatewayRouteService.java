@@ -1,7 +1,7 @@
-package com.zy.gateway.core.routeservice.service;
+package com.zy.gateway.routeservice.service;
 
-import com.zy.gateway.core.routeservice.domain.entity.GatewayRoute;
-import com.zy.gateway.core.routeservice.domain.form.*;
+import com.zy.gateway.routeservice.domain.entity.GatewayRoute;
+import com.zy.gateway.routeservice.domain.form.*;
 
 import java.util.List;
 

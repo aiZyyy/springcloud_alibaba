@@ -21,7 +21,7 @@
     <properties>
         <fastjson.version>1.2.73</fastjson.version>
         <dozer.version>5.5.1</dozer.version>
-        <mybatis.version>2.0.5</mybatis.version>
+        <tk.mybatis.version>2.1.5</tk.mybatis.version>
     </properties>
 
     <dependencies>
@@ -64,10 +64,9 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>${mybatis.version}</version>
-            <scope>compile</scope>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${tk.mybatis.version}</version>
         </dependency>
     </dependencies>
 </project>

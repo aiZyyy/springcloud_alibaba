@@ -1,4 +1,4 @@
-package com.zy.gateway.core.routeservice.domain.form;
+package com.zy.gateway.routeservice.domain.form;
 
 /**
  * @Author: ZY

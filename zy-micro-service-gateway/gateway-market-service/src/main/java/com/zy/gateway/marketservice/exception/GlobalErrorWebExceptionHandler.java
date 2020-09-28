@@ -42,7 +42,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
         final Map<String, Object> errorPropertiesMap = getErrorAttributes(request, true);
 
         return ServerResponse.status(HttpStatus.OK)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(errorPropertiesMap));
     }
 }

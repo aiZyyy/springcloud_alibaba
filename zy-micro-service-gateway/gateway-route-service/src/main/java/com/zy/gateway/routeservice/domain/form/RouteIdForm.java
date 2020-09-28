@@ -1,4 +1,4 @@
-package com.zy.gateway.core.routeservice.domain.form;
+package com.zy.gateway.routeservice.domain.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @Author: ZY
- * @Date: 2019/9/23 16:27
+ * @Date: 2019/8/14 14:11
  * @Version 1.0
  * @Description:
  */
@@ -17,7 +17,8 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RouteSkipDelForm {
-    @NotBlank(message = "跳过路径不能为空")
-    private String skipRoute;
+public class RouteIdForm {
+
+    @NotBlank(message = "路由id不能为空")
+    private String routeId;
 }

@@ -18,7 +18,7 @@ public class CustomFastJsonMessageConverter extends FastJsonHttpMessageConverter
     @Override
     public void write(Object o, Type type, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
         if (contentType.isWildcardType() || contentType.isWildcardSubtype() || contentType == MediaType.APPLICATION_OCTET_STREAM) {
-            contentType = MediaType.APPLICATION_JSON_UTF8;
+            contentType = MediaType.APPLICATION_JSON;
         }
         super.write(o, type, contentType, outputMessage);
     }

@@ -132,7 +132,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         if (body instanceof KeyValueKit) {
             ((KeyValueKit) body).cache();
         }
-        headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
+        headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         return super.handleExceptionInternal(ex, body, headers, status, request);
     }
 

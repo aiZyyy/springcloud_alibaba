@@ -265,7 +265,7 @@ public class KeyValueKit extends HashMap<String, Object> {
 
     public void write(HttpServletResponse response) throws IOException {
         // 设置编码 防止乱码
-        response.setHeader("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
+        response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         cacheResult.set(toJson());
         response.getOutputStream().write(cacheResult.get().getBytes(StandardCharsets.UTF_8));
     }
