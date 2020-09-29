@@ -6,10 +6,10 @@
 可尝试在plugin工程下用临时命令行执行mvn -U install,idea的maven管理用这个命令有时候不起效果,别问我怎么知道的(试了好多次,开始还以为是我版本升级导致的...)
 
 # pom依赖顺序
-- zy-micro-services: zy-micro-service-parent:总父类
-- zy-micro-services: config-service:配置中心(之前eureka用到)
-- zy-micro-services: api-zuul:zuul总网关(后面都用gateway)
-- zy-micro-services: api-gateway:gateway网关(准备写成服务网关,后面有个应用网关)
+- zy-micro-services-base: zy-micro-service-parent:总父类
+- zy-micro-services-base: config-service:配置中心(之前eureka用到)
+- zy-micro-services-base: api-zuul:zuul总网关(后面都用gateway)
+- zy-micro-services-base: api-gateway:gateway网关(准备写成服务网关,后面有个应用网关)
 
 - zy-micro-service-apps: common-plugin(lombok插件工具类,主要用于自动生成逆向工程代码)
 - zy-micro-service-apps: zy-micro-service-common(应用服务类总工具类)
