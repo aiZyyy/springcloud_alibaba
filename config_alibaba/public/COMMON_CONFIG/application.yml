@@ -10,14 +10,16 @@ zy-micro-services:
     gateway-route-service: 8102
     gateway-service: 8103
     #kits服务
-    snowflake-service: 8201
+    kits-snowflake-service: 8201
+    kits-market-service: 8202
     #demo
     demo-nacos-config-share: 9001
     demo-client-service: 9002
   # 数据库
   database:
     gateway-route-service: gateway_route
-    snowflake-service: snowflake
+    kits-snowflake-service: kits_snowflake
+    kits-market-service: kits_market
 
 ##############################
 # 以下为微服务公用配置 请勿修改

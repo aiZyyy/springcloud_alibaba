@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * @Date: 2018-12-19
  * @Time: 14:08
  */
-@FeignClient("snowflake-service")
+@FeignClient("kits-snowflake-service")
 public interface SnowFlakeServiceApi {
     /**
      * 雪花算法生成全局唯一id

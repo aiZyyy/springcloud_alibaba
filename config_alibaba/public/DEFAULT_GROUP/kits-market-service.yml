@@ -1,0 +1,2 @@
+server.port: ${zy-micro-services.ports.kits-market-service:0}
+spring.datasource.name: ${zy-micro-services.database.kits-market-service:sys}
