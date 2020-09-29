@@ -1,4 +1,4 @@
-package com.zy.kits.snowflakeservice;
+package com.zy.kits.marketservice;
 
 import com.zy.apps.common.annotation.ZyMicroServiceApplication;
 import org.springframework.boot.SpringApplication;
@@ -6,11 +6,11 @@ import org.springframework.boot.SpringApplication;
 /**
  * Created with IntelliJ IDEA
  *
- * @author ZY
+ * @author MiaoWoo
  */
 @ZyMicroServiceApplication
-public class SnowFlakeServiceApplication {
+public class KitsMarketServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SnowFlakeServiceApplication.class, args);
+        SpringApplication.run(KitsMarketServiceApplication.class, args);
     }
 }

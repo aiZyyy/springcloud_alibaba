@@ -1,4 +1,4 @@
-package com.zy.gateway.marketservice;
+package com.zy.base.api.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;

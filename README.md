@@ -26,6 +26,8 @@
 
 - zy-micro-service-kits: kits-snowflake-service-api(雪花算法api)
 - zy-micro-service-kits: kits-snowflake-service(雪花算法)
+- zy-micro-service-kits: kits-market-service-api(应用市场api)
+- zy-micro-service-kits: kits-market-service(应用市场)
 
 
 
