@@ -5,6 +5,7 @@ zy-micro-services:
     api-zuul: 8080
     discovery-service: 8081
     config-service: 8082
+
     api-gateway: 8090
     base-oauth-service: 8091
     #路由服务

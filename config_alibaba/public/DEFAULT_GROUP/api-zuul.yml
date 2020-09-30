@@ -1,5 +1,4 @@
-server:
-  port: 8080
+server.port: ${zy-micro-services.ports.api-zuul:0}
 
 zuul:
   # 添加代理的相关头信息

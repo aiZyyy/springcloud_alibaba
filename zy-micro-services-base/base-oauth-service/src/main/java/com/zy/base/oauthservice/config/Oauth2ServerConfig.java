@@ -1,6 +1,5 @@
 package com.zy.base.oauthservice.config;
 
-
 import com.zy.base.oauthservice.component.JwtTokenEnhancer;
 import com.zy.base.oauthservice.service.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
@@ -25,7 +24,7 @@ import java.util.List;
 
 /**
  * 认证服务器配置
- * Created by macro on 2020/6/19.
+ * Created by fishCoder on 2020/6/19.
  */
 @AllArgsConstructor
 @Configuration
@@ -44,15 +43,15 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 .secret(passwordEncoder.encode("123456"))
                 .scopes("all")
                 .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(3600*24)
-                .refreshTokenValiditySeconds(3600*24*7)
+                .accessTokenValiditySeconds(3600 * 24)
+                .refreshTokenValiditySeconds(3600 * 24 * 7)
                 .and()
                 .withClient("portal-app")
                 .secret(passwordEncoder.encode("123456"))
                 .scopes("all")
                 .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(3600*24)
-                .refreshTokenValiditySeconds(3600*24*7);
+                .accessTokenValiditySeconds(3600 * 24)
+                .refreshTokenValiditySeconds(3600 * 24 * 7);
     }
 
     @Override

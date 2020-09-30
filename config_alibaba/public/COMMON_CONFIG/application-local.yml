@@ -12,4 +12,4 @@ REDIS_DB: 1
 #RabbitMQ
 RABBITMQ_HOST: ${zy-micro-service.local}
 # MongoDB
-#MONGODB_HOST: dev.mongodb.i.sixi.com
+#MONGODB_HOST: dev.mongodb.i.zy.com
