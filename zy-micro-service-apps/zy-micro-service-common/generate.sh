@@ -8,15 +8,15 @@ TARGET_ENTITY="com.hd.rtu.${GROUP}.${SERVER}.entity"
 TARGET_MAPPER="com.hd.rtu.${GROUP}.${SERVER}.mapper"
 
 # 数据库地址
-DB_HOST="172.16.22.208"
+DB_HOST="*********"
 # 数据库端口
-DB_PORT=3316
+DB_PORT=3306
 # 数据库名称
 DB_NAME="irtuv20"
 # 数据库用户名
 DB_USER="root"
 # 数据库密码
-DB_PASS="123456789Aa"
+DB_PASS="******"
 
 # 表名 多个表用空格分隔 所有的表用 % 代替
 TABLES='dev_term_upgrade_pkg'
