@@ -10,6 +10,7 @@
 - zy-micro-services-base: config-service:配置中心(之前eureka用到)
 - zy-micro-services-base: api-zuul:zuul总网关(后面都用gateway)
 - zy-micro-services-base: api-gateway:gateway网关(准备写成服务网关,后面有个应用网关)
+- zy-micro-services-base: base-oauth-service(统一认证服务)
 
 - zy-micro-service-apps: common-plugin(lombok插件工具类,主要用于自动生成逆向工程代码)
 - zy-micro-service-apps: zy-micro-service-common(应用服务类总工具类)
@@ -19,6 +20,7 @@
 - zy-micro-service-demo: demo-nacos-config-share-api(nacos共享配置demoAPI)
 - zy-micro-service-demo: demo-nacos-config-share(nacos共享配置demo)
 - zy-micro-service-demo: demo-client-service(服务相互调用demo)
+- zy-micro-service-demo: demo-oauth-service(认证服务调用demo)
 
 - zy-micro-service-gateway: gateway-checksign-common(网关验签SDK)
 - zy-micro-service-gateway: gateway-market-service(应用网关)
