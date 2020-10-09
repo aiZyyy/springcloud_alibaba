@@ -21,6 +21,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.net.URI;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ import java.util.stream.Collectors;
  */
 @Component
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
-    @Autowired
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
     @Autowired
     private IgnoreUrlsConfig ignoreUrlsConfig;
@@ -53,13 +54,13 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             }
         }
         //对应跨域的预检请求直接放行
-        if(request.getMethod()==HttpMethod.OPTIONS){
+        if (request.getMethod() == HttpMethod.OPTIONS) {
             return Mono.just(new AuthorizationDecision(true));
         }
         //不同用户体系登录不允许互相访问
         try {
             String token = request.getHeaders().getFirst(AuthConstant.JWT_TOKEN_HEADER);
-            if(StrUtil.isEmpty(token)){
+            if (StrUtil.isEmpty(token)) {
                 return Mono.just(new AuthorizationDecision(false));
             }
             String realToken = token.replace(AuthConstant.JWT_TOKEN_PREFIX, "");

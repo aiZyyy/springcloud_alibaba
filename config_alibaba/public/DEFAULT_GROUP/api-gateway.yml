@@ -1,85 +1,31 @@
 server.port: ${zy-micro-services.ports.api-gateway:0}
-
 spring:
   cloud:
     gateway:
-
+      routes: #配置路由路径
+      - id: demo-oauth-service
+        uri: lb://demo-oauth-service
+        predicates:
+          - Path=/demo/auth/**
+        filters:
+          - StripPrefix=1
+      - id: base-oauth-service
+        uri: lb://base-oauth-service
+        predicates:
+          - Path=/auth/**
+        filters:
+          - StripPrefix=1
       discovery:
         locator:
-          enabled: true
-          lower-case-service-id: true #使用小写service-id
-      routes: #配置路由路径
-      - id: mall-auth
-        uri: lb://mall-auth
-        predicates:
-          - Path=/mall-auth/**
-        filters:
-          - StripPrefix=1
-      - id: mall-admin
-        uri: lb://mall-admin
-        predicates:
-          - Path=/mall-admin/**
-        filters:
-          - StripPrefix=1
-      - id: mall-portal
-        uri: lb://mall-portal
-        predicates:
-          - Path=/mall-portal/**
-        filters:
-          - StripPrefix=1
-      - id: mall-search
-        uri: lb://mall-search
-        predicates:
-          - Path=/mall-search/**
-        filters:
-          - StripPrefix=1
-      - id: mall-demo
-        uri: lb://mall-demo
-        predicates:
-          - Path=/mall-demo/**
-      filters:
-        - StripPrefix=1
-          # 代表默认的过滤器，这是一个全局的过滤器，不属于任何一个route
-          default-filters:
-            # 重试
-              - name: Retry
-              args:
-                retries: 3
-                statuses: BAD_GATEWAY
+          enabled: true #开启从注册中心动态创建路由的功能
+          lower-case-service-id: true #使用小写服务名，默认是大写
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: 'http://localhost:8201/mall-auth/rsa/publicKey' #配置RSA的公钥访问地址
+          jwk-set-uri: 'http://localhost:8091/rsa/publicKey' #配置RSA的公钥访问地址
 secure:
   ignore:
     urls: #配置白名单路径
-      - "/doc.html"
-      - "/swagger-resources/**"
-      - "/swagger/**"
-      - "/**/v2/api-docs"
-      - "/**/*.js"
-      - "/**/*.css"
-      - "/**/*.png"
-      - "/**/*.ico"
-      - "/webjars/springfox-swagger-ui/**"
       - "/actuator/**"
-      - "/mall-auth/oauth/token"
-      - "/mall-auth/rsa/publicKey"
-      - "/mall-search/**"
-      - "/mall-portal/sso/**"
-      - "/mall-portal/home/**"
-      - "/mall-portal/product/**"
-      - "/mall-portal/brand/**"
-      - "/mall-admin/admin/login"
-      - "/mall-admin/admin/register"
-      - "/mall-admin/admin/info"
-      - "/mall-admin/minio/upload"
-management: #开启SpringBoot Admin的监控
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
+      - "/auth/oauth/token"

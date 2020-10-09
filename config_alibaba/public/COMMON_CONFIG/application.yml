@@ -18,6 +18,7 @@ zy-micro-services:
     #demo
     demo-nacos-config-share: 9001
     demo-client-service: 9002
+    demo-oauth-service: 9003
   # 数据库
   database:
     gateway-route-service: gateway_route

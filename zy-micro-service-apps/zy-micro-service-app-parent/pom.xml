@@ -7,6 +7,7 @@
     <groupId>com.zy.apps</groupId>
     <artifactId>zy-micro-service-app-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
     <description>fishCoder微服务应用父项目</description>
