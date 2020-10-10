@@ -1,7 +1,7 @@
 package com.zy.base.oauthservice.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.zy.base.oauthservice.constant.RedisConstant;
+import com.zy.apps.common.constant.AuthConstant;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +28,6 @@ public class ResourceServiceImpl {
         resourceRolesMap = new TreeMap<>();
         resourceRolesMap.put("/demo/auth/hello", CollUtil.toList("ADMIN"));
         resourceRolesMap.put("/demo/auth/user/currentUser", CollUtil.toList("ADMIN", "TEST"));
-        redisTemplate.opsForHash().putAll(RedisConstant.RESOURCE_ROLES_MAP, resourceRolesMap);
+        redisTemplate.opsForHash().putAll(AuthConstant.RESOURCE_ROLES_MAP_KEY, resourceRolesMap);
     }
 }

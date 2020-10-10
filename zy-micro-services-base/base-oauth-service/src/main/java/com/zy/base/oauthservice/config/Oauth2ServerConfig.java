@@ -1,5 +1,6 @@
 package com.zy.base.oauthservice.config;
 
+import com.zy.apps.common.constant.AuthConstant;
 import com.zy.base.oauthservice.component.JwtTokenEnhancer;
 import com.zy.base.oauthservice.service.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 认证服务器配置
+ * 认证服务器配置(配置clientId和secret)
  * Created by fishCoder on 2020/6/19.
  */
 @AllArgsConstructor
@@ -31,27 +32,29 @@ import java.util.List;
 @EnableAuthorizationServer
 public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    //密码加密
     private final PasswordEncoder passwordEncoder;
     private final UserServiceImpl userDetailsService;
     private final AuthenticationManager authenticationManager;
+    //JWT内容增强器
     private final JwtTokenEnhancer jwtTokenEnhancer;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("admin-app")
-                .secret(passwordEncoder.encode("123456"))
-                .scopes("all")
-                .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(3600 * 24)
-                .refreshTokenValiditySeconds(3600 * 24 * 7)
-                .and()
-                .withClient("portal-app")
+                .withClient(AuthConstant.ADMIN_CLIENT_ID)
                 .secret(passwordEncoder.encode("123456"))
                 .scopes("all")
                 .authorizedGrantTypes("password", "refresh_token")
                 .accessTokenValiditySeconds(3600 * 24)
                 .refreshTokenValiditySeconds(3600 * 24 * 7);
+//                .and()
+//                .withClient("portal-app")
+//                .secret(passwordEncoder.encode("123456"))
+//                .scopes("all")
+//                .authorizedGrantTypes("password", "refresh_token")
+//                .accessTokenValiditySeconds(3600 * 24)
+//                .refreshTokenValiditySeconds(3600 * 24 * 7);
     }
 
     @Override

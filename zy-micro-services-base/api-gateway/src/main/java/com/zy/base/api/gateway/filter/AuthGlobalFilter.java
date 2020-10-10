@@ -17,6 +17,7 @@ import java.text.ParseException;
 
 /**
  * 将登录用户的JWT转化成用户信息的全局过滤器
+ * 当鉴权通过后将JWT令牌中的用户信息解析出来，然后存入请求的Header中，这样后续服务就不需要解析JWT令牌了，可以直接从请求的Header中获取到用户信息
  * Created by fishCoder on 2020/6/17.
  */
 @Component

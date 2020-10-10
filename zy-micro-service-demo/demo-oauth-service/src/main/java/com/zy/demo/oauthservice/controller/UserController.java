@@ -4,7 +4,6 @@ import com.zy.demo.oauthservice.domain.UserDTO;
 import com.zy.demo.oauthservice.holder.LoginUserHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/user")
 public class UserController{
 
     @Autowired
     private LoginUserHolder loginUserHolder;
 
-    @GetMapping("/currentUser")
+    @GetMapping("/user/currentUser")
     public UserDTO currentUser() {
         return loginUserHolder.getCurrentUser();
     }

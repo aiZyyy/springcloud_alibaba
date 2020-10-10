@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * JWT内容增强器
+ * JWT内容增强器(重写tokenEnhancer,可在additionalInformation中加入想要加入的用户信息)
  * Created by fishCoder on 2020/6/19.
  */
 @Component

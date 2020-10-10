@@ -1,4 +1,4 @@
-#项目标准配置
+# 项目标准配置
 spring.application.name: @project.artifactId@
 spring.main.allow-bean-definition-overriding: true
 spring.profiles.active: ${SPRING_CLOUD_CONFIG_PROFILE:local}
