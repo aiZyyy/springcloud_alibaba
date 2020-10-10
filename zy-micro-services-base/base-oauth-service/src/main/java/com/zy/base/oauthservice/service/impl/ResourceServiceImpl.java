@@ -2,12 +2,11 @@ package com.zy.base.oauthservice.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.zy.apps.common.constant.AuthConstant;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -19,9 +18,10 @@ import java.util.TreeMap;
  */
 @Service
 public class ResourceServiceImpl {
-    private Map<String, List<String>> resourceRolesMap;
-    @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private Map<String, Object> resourceRolesMap;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @PostConstruct
     public void initData() {

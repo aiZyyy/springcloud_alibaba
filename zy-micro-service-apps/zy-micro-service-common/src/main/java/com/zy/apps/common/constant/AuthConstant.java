@@ -34,7 +34,7 @@ public interface AuthConstant {
     /**
      * Redis缓存权限规则key
      */
-    String RESOURCE_ROLES_MAP_KEY = "auth:resourceRolesMap";
+    String RESOURCE_ROLES_MAP_KEY = "oauth:role";
 
     /**
      * 认证信息Http请求头
