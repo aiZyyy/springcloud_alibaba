@@ -3,13 +3,13 @@ spring:
   cloud:
     gateway:
       routes: #配置路由路径
-      - id: demo-oauth-service
+      - id: demo_oauth
         uri: lb://demo-oauth-service
         predicates:
           - Path=/demo/auth/**
         filters:
           - StripPrefix=1
-      - id: base-oauth-service
+      - id: base_oauth
         uri: lb://base-oauth-service
         predicates:
           - Path=/auth/**

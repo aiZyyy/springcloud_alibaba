@@ -17,7 +17,7 @@ public class Oauth2TokenDto {
     /**
      * 访问令牌
      */
-    private String token;
+    private String accessToken;
     /**
      * 刷令牌
      */
