@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionRepository;
 import org.springframework.cloud.gateway.support.NotFoundException;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -29,10 +29,8 @@ public class UnifiedRouteRepository implements RouteDefinitionRepository {
 
     private final Map<String, RouteDefinition> routes = synchronizedMap(new LinkedHashMap<>());
 
-
-
     @Autowired
-    StringRedisTemplate redisTemplate;
+    RedisTemplate<String,Object> redisTemplate;
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {

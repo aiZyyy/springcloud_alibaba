@@ -1,11 +1,7 @@
 package com.zy.base.api.gateway.authorization;
 
 import cn.hutool.core.convert.Convert;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
-import com.nimbusds.jose.JWSObject;
 import com.zy.apps.common.constant.AuthConstant;
-import com.zy.apps.common.domain.entity.UserDto;
 import com.zy.base.api.gateway.config.IgnoreUrlsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,11 +18,7 @@ import org.springframework.util.PathMatcher;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
