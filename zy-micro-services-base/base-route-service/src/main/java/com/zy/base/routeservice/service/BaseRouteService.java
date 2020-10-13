@@ -50,4 +50,6 @@ public interface BaseRouteService {
      * 停用路由
      */
     Integer delRoute(RouteIdForm routeForm);
+
+    void baseRouteRefresh();
 }

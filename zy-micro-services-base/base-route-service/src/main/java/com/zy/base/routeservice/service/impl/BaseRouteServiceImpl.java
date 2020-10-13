@@ -3,7 +3,9 @@ package com.zy.base.routeservice.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zy.apps.common.constant.GatewayConstant;
 import com.zy.apps.common.kits.DozerBeanKit;
+import com.zy.apps.common.utils.MapperUtil;
 import com.zy.base.routeservice.domain.entity.BaseRoute;
 import com.zy.base.routeservice.domain.entity.BaseRouteExample;
 import com.zy.base.routeservice.domain.form.RouteForm;
@@ -18,7 +20,7 @@ import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -36,12 +38,10 @@ import java.util.*;
 @Transactional(rollbackFor = Exception.class)
 public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventPublisherAware {
 
-    public static final String GATEWAY_ROUTES = "gateway_routes";
-
     private ApplicationEventPublisher publisher;
 
     @Autowired
-    StringRedisTemplate redisTemplate;
+    RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private BaseRouteMapper gatewayRouteMapper;
@@ -76,7 +76,7 @@ public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventP
             gatewayRouteMapper.insertSelective(gatewayRoute);
             //存入redis
             RouteDefinition routeDefinition = assembleRouteDefinition(gatewayRoute);
-            redisTemplate.opsForHash().put(GATEWAY_ROUTES, routeId, JSON.toJSONString(routeDefinition));
+            redisTemplate.opsForHash().put(GatewayConstant.GATEWAY_ROUTES, routeId, JSON.toJSONString(routeDefinition));
             return gatewayRoute;
         } else {
             return null;
@@ -97,7 +97,7 @@ public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventP
             RouteDefinition routeDefinition = assembleRouteDefinition(oneByRouteId);
             //如果为启用状态路由,更新redis信息
             if (oneByRouteId.getEnable() == 0) {
-                redisTemplate.opsForHash().put(GATEWAY_ROUTES, routeId, JSON.toJSONString(routeDefinition));
+                redisTemplate.opsForHash().put(GatewayConstant.GATEWAY_ROUTES, routeId, JSON.toJSONString(routeDefinition));
             }
             return gatewayRoute;
         } else {
@@ -115,7 +115,7 @@ public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventP
             BaseRoute gatewayRoute = BaseRoute.builder().enable(0).build();
             int update = gatewayRouteMapper.updateByExampleSelective(gatewayRoute, gatewayRouteExample);
             RouteDefinition routeDefinition = assembleRouteDefinition(gatewayRoutes.get(0));
-            redisTemplate.opsForHash().put(GATEWAY_ROUTES, routeForm.getRouteId(), JSON.toJSONString(routeDefinition));
+            redisTemplate.opsForHash().put(GatewayConstant.GATEWAY_ROUTES, routeForm.getRouteId(), JSON.toJSONString(routeDefinition));
             return update;
         } else {
             return 0;
@@ -127,16 +127,25 @@ public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventP
         String routeId = routeForm.getRouteId();
         BaseRouteExample gatewayRouteExample = new BaseRouteExample();
         gatewayRouteExample.createCriteria().andRouteIdEqualTo(routeId).andEnableEqualTo(0);
-        List<BaseRoute> gatewayRoutes = gatewayRouteMapper.selectByExample(gatewayRouteExample);
-        if (CollectionUtils.isNotEmpty(gatewayRoutes)) {
+        BaseRoute baseRoute = MapperUtil.getFirstOrNull(gatewayRouteMapper.selectByExample(gatewayRouteExample));
+        if (Objects.nonNull(baseRoute)) {
             BaseRoute gatewayRoute = BaseRoute.builder().enable(1).build();
             int update = gatewayRouteMapper.updateByExampleSelective(gatewayRoute, gatewayRouteExample);
+            redisTemplate.opsForHash().delete(GatewayConstant.GATEWAY_ROUTES, baseRoute.getRouteId());
             return update;
         } else {
             return 0;
         }
     }
 
+    @Override
+    public void baseRouteRefresh() {
+        redisTemplate.opsForHash().delete(GatewayConstant.GATEWAY_ROUTES);
+        List<BaseRoute> baseRoutes = findListAll();
+        HashMap<String, String> map = new HashMap<>();
+        baseRoutes.stream().forEach(item -> map.put(item.getRouteId(), JSON.toJSONString(assembleRouteDefinition(item))));
+        redisTemplate.opsForHash().putAll(GatewayConstant.GATEWAY_ROUTES, map);
+    }
 
     @Override
     public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
@@ -184,13 +193,13 @@ public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventP
             stripFilter.setArgs(stripParams);
             fdList.add(stripFilter);
         }
-        //添加缓存过滤器
+        //添加跳过认证过滤器
         FilterDefinition cacheFilter = new FilterDefinition();
         Map<String, String> cacheParams = new HashMap<>(8);
-        cacheFilter.setName("Cache");
+        cacheFilter.setName("Skip");
         cacheFilter.setArgs(cacheParams);
         fdList.add(cacheFilter);
-        //添加验签过滤器
+        //添加认证过滤器
         FilterDefinition authFilter = new FilterDefinition();
         Map<String, String> authParams = new HashMap<>(8);
         authFilter.setName("Auth");

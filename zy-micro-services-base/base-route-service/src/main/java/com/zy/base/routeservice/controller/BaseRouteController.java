@@ -81,4 +81,14 @@ public class BaseRouteController {
     public Integer delRoute(@Valid @RequestBody RouteIdForm routeDelForm) {
         return baseRouteService.delRoute(routeDelForm);
     }
+
+    /**
+     * 可跳过认证路径刷新
+     * @return
+     */
+    @PostMapping("/route/base/refresh")
+    public String baseRouteRefresh() {
+        baseRouteService.baseRouteRefresh();
+        return "refresh success";
+    }
 }

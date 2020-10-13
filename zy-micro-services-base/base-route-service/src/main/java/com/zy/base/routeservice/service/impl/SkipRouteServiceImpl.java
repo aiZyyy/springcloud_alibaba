@@ -1,5 +1,6 @@
 package com.zy.base.routeservice.service.impl;
 
+import com.zy.apps.common.constant.GatewayConstant;
 import com.zy.apps.common.kits.DozerBeanKit;
 import com.zy.apps.common.utils.AssertUtil;
 import com.zy.apps.common.utils.MapperUtil;
@@ -28,8 +29,6 @@ import java.util.Objects;
 @Transactional(rollbackFor = Exception.class)
 public class SkipRouteServiceImpl implements SkipRouteService {
 
-    public static final String SKIP_ROUTES = "skip_routes";
-
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -44,7 +43,7 @@ public class SkipRouteServiceImpl implements SkipRouteService {
     @Override
     public void skipRouteAdd(RouteSkipAddForm routeSkipForm) {
         String skipRoute = routeSkipForm.getUrl();
-        redisTemplate.opsForHash().put(SKIP_ROUTES, skipRoute, "0");
+        redisTemplate.opsForHash().put(GatewayConstant.SKIP_ROUTES, skipRoute, "0");
         SkipRoute route = getSkipRoute(skipRoute);
         if (Objects.nonNull(route)) {
             AssertUtil.forbidden(false, "已存在相应路径,请勿重复添加!");
@@ -67,7 +66,7 @@ public class SkipRouteServiceImpl implements SkipRouteService {
     @Override
     public void skipRouteDel(RouteSkipDelForm routeSkipDelForm) {
         String skipRoute = routeSkipDelForm.getUrl();
-        redisTemplate.opsForHash().delete(SKIP_ROUTES, skipRoute);
+        redisTemplate.opsForHash().delete(GatewayConstant.SKIP_ROUTES, skipRoute);
         SkipRoute route = getSkipRoute(skipRoute);
         if (Objects.nonNull(route)) {
             SkipRouteExample skipRouteExample = new SkipRouteExample();
@@ -78,10 +77,10 @@ public class SkipRouteServiceImpl implements SkipRouteService {
 
     @Override
     public void skipRouteRefresh() {
-        redisTemplate.opsForHash().delete(SKIP_ROUTES);
+        redisTemplate.opsForHash().delete(GatewayConstant.SKIP_ROUTES);
         List<SkipRoute> skipRoutes = skipRouteMapper.selectByExample(new SkipRouteExample());
         HashMap<String, String> map = new HashMap<>();
         skipRoutes.stream().forEach(item -> map.put(item.getUrl(), "0"));
-        redisTemplate.opsForHash().putAll(SKIP_ROUTES, map);
+        redisTemplate.opsForHash().putAll(GatewayConstant.SKIP_ROUTES, map);
     }
 }
