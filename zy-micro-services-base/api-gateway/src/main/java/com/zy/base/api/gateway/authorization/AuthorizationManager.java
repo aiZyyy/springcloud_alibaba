@@ -58,40 +58,33 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         if (request.getMethod() == HttpMethod.OPTIONS) {
             return Mono.just(new AuthorizationDecision(true));
         }
-        //不同用户体系登录不允许互相访问
-        try {
-            String token = request.getHeaders().getFirst(AuthConstant.JWT_TOKEN_HEADER);
-            if (StrUtil.isEmpty(token)) {
-                return Mono.just(new AuthorizationDecision(false));
-            }
-            String realToken = token.replace(AuthConstant.JWT_TOKEN_PREFIX, "");
-            JWSObject jwsObject = JWSObject.parse(realToken);
-            String userStr = jwsObject.getPayload().toString();
-            UserDto userDto = JSONUtil.toBean(userStr, UserDto.class);
-            if (AuthConstant.ADMIN_CLIENT_ID.equals(userDto.getClientId()) && !pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
-                return Mono.just(new AuthorizationDecision(false));
-            }
-            if (AuthConstant.PORTAL_CLIENT_ID.equals(userDto.getClientId()) && pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
-                return Mono.just(new AuthorizationDecision(false));
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return Mono.just(new AuthorizationDecision(false));
-        }
+//        //不同用户体系登录不允许互相访问
+//        try {
+//            String token = request.getHeaders().getFirst(AuthConstant.JWT_TOKEN_HEADER);
+//            if (StrUtil.isEmpty(token)) {
+//                return Mono.just(new AuthorizationDecision(false));
+//            }
+//            String realToken = token.replace(AuthConstant.JWT_TOKEN_PREFIX, "");
+//            JWSObject jwsObject = JWSObject.parse(realToken);
+//            String userStr = jwsObject.getPayload().toString();
+//            UserDto userDto = JSONUtil.toBean(userStr, UserDto.class);
+//            if (AuthConstant.DEMO_CLIENT_ID.equals(userDto.getClientId()) && !pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
+//                return Mono.just(new AuthorizationDecision(false));
+//            }
+//            if (AuthConstant.PORTAL_CLIENT_ID.equals(userDto.getClientId()) && pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
+//                return Mono.just(new AuthorizationDecision(false));
+//            }
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            return Mono.just(new AuthorizationDecision(false));
+//        }
         //非管理端路径直接放行
         if (!pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
             return Mono.just(new AuthorizationDecision(true));
         }
         //管理端路径需校验权限
-        Map<Object, Object> resourceRolesMap = redisTemplate.opsForHash().entries(AuthConstant.RESOURCE_ROLES_MAP_KEY);
-        Iterator<Object> iterator = resourceRolesMap.keySet().iterator();
-        List<String> authorities = new ArrayList<>();
-        while (iterator.hasNext()) {
-            String pattern = (String) iterator.next();
-            if (pathMatcher.match(pattern, uri.getPath())) {
-                authorities.addAll(Convert.toList(String.class, resourceRolesMap.get(pattern)));
-            }
-        }
+        Object obj = redisTemplate.opsForHash().get(AuthConstant.RESOURCE_ROLES_MAP_KEY, uri.getPath());
+        List<String> authorities = Convert.toList(String.class,obj);
         authorities = authorities.stream().map(i -> i = AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
         //认证通过且角色匹配的用户可访问当前路径
         return mono

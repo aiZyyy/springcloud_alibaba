@@ -1,0 +1,2 @@
+server.port: ${zy-micro-services.ports.base-route-service:0}
+spring.datasource.name: ${zy-micro-services.database.base-route-service:sys}

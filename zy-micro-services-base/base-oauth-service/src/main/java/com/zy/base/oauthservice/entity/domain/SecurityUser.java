@@ -33,10 +33,6 @@ public class SecurityUser implements UserDetails {
      */
     private Boolean enabled;
     /**
-     * 登录客户端ID
-     */
-    private String clientId;
-    /**
      * 权限数据
      */
     private Collection<SimpleGrantedAuthority> authorities;
@@ -45,15 +41,14 @@ public class SecurityUser implements UserDetails {
 
     }
 
-    public SecurityUser(UserDto userDto) {
-        this.setId(userDto.getId());
-        this.setUsername(userDto.getUsername());
-        this.setPassword(userDto.getPassword());
-        this.setEnabled(userDto.getStatus() == 1);
-        this.setClientId(userDto.getClientId());
-        if (userDto.getRoles() != null) {
+    public SecurityUser(UserDto userDTO) {
+        this.setId(userDTO.getId());
+        this.setUsername(userDTO.getUsername());
+        this.setPassword(userDTO.getPassword());
+        this.setEnabled(userDTO.getStatus() == 1);
+        if (userDTO.getRoles() != null) {
             authorities = new ArrayList<>();
-            userDto.getRoles().forEach(item -> authorities.add(new SimpleGrantedAuthority(item)));
+            userDTO.getRoles().forEach(item -> authorities.add(new SimpleGrantedAuthority(item)));
         }
     }
 

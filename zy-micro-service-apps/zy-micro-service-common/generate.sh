@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 # 服务组名称(包名第三段)
-GROUP='modules'
+GROUP='base'
 # 服务名称(包名第四段)
-SERVER='rtu'
+SERVER='routeservice'
 # 指定对应文件生成目录(如果不是微服务项目 请自行修改完整包名)
-TARGET_ENTITY="com.hd.rtu.${GROUP}.${SERVER}.entity"
-TARGET_MAPPER="com.hd.rtu.${GROUP}.${SERVER}.mapper"
+TARGET_ENTITY="com.zy.${GROUP}.${SERVER}.domain.entity"
+TARGET_MAPPER="com.zy.${GROUP}.${SERVER}.mapper"
 
 # 数据库地址
-DB_HOST="*********"
+DB_HOST="127.0.0.1"
 # 数据库端口
 DB_PORT=3306
 # 数据库名称
-DB_NAME="irtuv20"
+DB_NAME="base_route"
 # 数据库用户名
 DB_USER="root"
 # 数据库密码
-DB_PASS="******"
+DB_PASS="root"
 
 # 表名 多个表用空格分隔 所有的表用 % 代替
-TABLES='dev_term_upgrade_pkg'
+TABLES='skip_route'
 
 ###############################
 # 请勿修改以下部分代码 除非你看得懂 #

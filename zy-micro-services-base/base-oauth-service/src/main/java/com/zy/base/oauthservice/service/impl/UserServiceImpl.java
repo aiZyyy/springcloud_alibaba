@@ -1,6 +1,7 @@
 package com.zy.base.oauthservice.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.zy.apps.common.constant.AuthConstant;
 import com.zy.base.oauthservice.constant.MessageConstant;
 import com.zy.base.oauthservice.entity.domain.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class UserServiceImpl implements UserDetailsService {
     public void initData() {
         String password = passwordEncoder.encode("123456");
         userList = new ArrayList<>();
-        userList.add(new UserDto(1L, "zy", password, 1, "1", CollUtil.toList("ADMIN")));
-        userList.add(new UserDto(2L, "zyy", password, 1, "1", CollUtil.toList("TEST")));
+        userList.add(new UserDto(1L,"macro", password,1, CollUtil.toList("ADMIN")));
+        userList.add(new UserDto(2L,"andy", password,1, CollUtil.toList("TEST")));
     }
 
     @Override

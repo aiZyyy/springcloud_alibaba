@@ -8,6 +8,7 @@ zy-micro-services:
 
     api-gateway: 8090
     base-oauth-service: 8091
+    base-route-service: 8092
     #路由服务
     gateway-market-service: 8101
     gateway-route-service: 8102
@@ -21,6 +22,7 @@ zy-micro-services:
     demo-oauth-service: 9003
   # 数据库
   database:
+    base-route-service: base_route
     gateway-route-service: gateway_route
     kits-snowflake-service: kits_snowflake
     kits-market-service: kits_market

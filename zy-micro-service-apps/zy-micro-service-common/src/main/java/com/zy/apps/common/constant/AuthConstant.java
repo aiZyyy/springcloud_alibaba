@@ -17,9 +17,9 @@ public interface AuthConstant {
     String AUTHORITY_CLAIM_NAME = "authorities";
 
     /**
-     * 后台管理client_id
+     * 测试client_id
      */
-    String ADMIN_CLIENT_ID = "admin-app";
+    String DEMO_CLIENT_ID = "demo-zy";
 
     /**
      * 前台商城client_id
@@ -34,7 +34,7 @@ public interface AuthConstant {
     /**
      * Redis缓存权限规则key
      */
-    String RESOURCE_ROLES_MAP_KEY = "oauth:role";
+    String RESOURCE_ROLES_MAP_KEY = "oauth:roleMap";
 
     /**
      * 认证信息Http请求头
