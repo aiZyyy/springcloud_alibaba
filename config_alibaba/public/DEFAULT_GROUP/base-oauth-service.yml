@@ -1,1 +1,1 @@
-server.port: ${zy-micro-services.ports.base-oauth-service.yml:0}
+server.port: ${zy-micro-services.ports.base-oauth-service:0}
