@@ -70,10 +70,10 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
 //            e.printStackTrace();
 //            return Mono.just(new AuthorizationDecision(false));
 //        }
-        //非管理端路径直接放行
-        if (!pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
-            return Mono.just(new AuthorizationDecision(true));
-        }
+//        //非管理端路径直接放行
+//        if (!pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
+//            return Mono.just(new AuthorizationDecision(true));
+//        }
         //管理端路径需校验权限
         Object obj = redisTemplate.opsForHash().get(AuthConstant.RESOURCE_ROLES_MAP_KEY, uri.getPath());
         List<String> authorities = Convert.toList(String.class,obj);
