@@ -1,5 +1,6 @@
 package com.zy.base.routeservice.controller;
 
+import com.zy.apps.common.domain.vo.Result;
 import com.zy.base.routeservice.domain.form.RouteSkipAddForm;
 import com.zy.base.routeservice.domain.form.RouteSkipDelForm;
 import com.zy.base.routeservice.service.BaseRouteService;
@@ -31,9 +32,9 @@ public class SkipRouteController {
      * @param routeSkipForm
      */
     @PostMapping("/route/skip/add")
-    public String skipRouteAdd(@Valid @RequestBody RouteSkipAddForm routeSkipForm) {
+    public Result<?> skipRouteAdd(@Valid @RequestBody RouteSkipAddForm routeSkipForm) {
         skipRouteService.skipRouteAdd(routeSkipForm);
-        return "success";
+        return Result.ok();
     }
 
     /**
@@ -42,9 +43,9 @@ public class SkipRouteController {
      * @param routeSkipDelForm
      */
     @PostMapping("/route/skip/del")
-    public String skipRouteDel(@Valid @RequestBody RouteSkipDelForm routeSkipDelForm) {
+    public Result<?> skipRouteDel(@Valid @RequestBody RouteSkipDelForm routeSkipDelForm) {
         skipRouteService.skipRouteDel(routeSkipDelForm);
-        return "del success";
+        return Result.ok();
     }
 
     /**
@@ -52,8 +53,8 @@ public class SkipRouteController {
      * @return
      */
     @PostMapping("/route/skip/refresh")
-    public String skipRouteRefresh() {
+    public Result<?> skipRouteRefresh() {
         skipRouteService.skipRouteRefresh();
-        return "refresh success";
+        return Result.ok();
     }
 }

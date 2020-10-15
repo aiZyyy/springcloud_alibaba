@@ -11,6 +11,7 @@
 - zy-micro-services-base: api-zuul:zuul总网关(后面都用gateway.废弃)
 - zy-micro-services-base: api-gateway:gateway网关(准备写成服务网关)
 - zy-micro-services-base: base-oauth-service(统一认证服务)
+- zy-micro-services-base: base-route-service(动态路由服务)
 
 - zy-micro-service-apps: common-plugin(lombok插件工具类,主要用于自动生成逆向工程代码)
 - zy-micro-service-apps: zy-micro-service-common(应用服务类总工具类)

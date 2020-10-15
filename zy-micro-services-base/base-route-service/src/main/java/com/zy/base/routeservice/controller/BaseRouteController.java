@@ -1,5 +1,6 @@
 package com.zy.base.routeservice.controller;
 
+import com.zy.apps.common.domain.vo.Result;
 import com.zy.base.routeservice.domain.entity.BaseRoute;
 import com.zy.base.routeservice.domain.form.RouteForm;
 import com.zy.base.routeservice.domain.form.RouteIdForm;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @Author: ZY
@@ -34,8 +34,9 @@ public class BaseRouteController {
      * @return
      */
     @PostMapping("/route/base/addRoute")
-    public BaseRoute addRoute(@Valid @RequestBody RouteForm routeForm) {
-        return baseRouteService.addRoute(routeForm);
+    public Result<?> addRoute(@Valid @RequestBody RouteForm routeForm) {
+        BaseRoute baseRoute = baseRouteService.addRoute(routeForm);
+        return Result.ok(baseRoute);
     }
 
     /**
@@ -45,8 +46,8 @@ public class BaseRouteController {
      * @return
      */
     @PostMapping("/route/base/updateRoute")
-    public BaseRoute updateRoute(@Valid @RequestBody RouteUpdateForm routeForm) {
-        return baseRouteService.updateRoute(routeForm);
+    public Result<?> updateRoute(@Valid @RequestBody RouteUpdateForm routeForm) {
+        return Result.ok(baseRouteService.updateRoute(routeForm));
     }
 
     /**
@@ -56,8 +57,8 @@ public class BaseRouteController {
      * @return
      */
     @PostMapping("/route/base/query")
-    public List<BaseRoute> queryRoute() {
-        return baseRouteService.findListAll();
+    public Result<?> queryRoute() {
+        return Result.ok(baseRouteService.findListAll());
     }
 
     /**
@@ -67,8 +68,8 @@ public class BaseRouteController {
      * @return
      */
     @PostMapping("/route/base/open")
-    public Integer openRoute(@Valid @RequestBody RouteIdForm routeForm) {
-        return baseRouteService.openRoute(routeForm);
+    public Result<?> openRoute(@Valid @RequestBody RouteIdForm routeForm) {
+        return Result.ok(baseRouteService.openRoute(routeForm));
     }
 
     /**
@@ -78,17 +79,18 @@ public class BaseRouteController {
      * @return
      */
     @PostMapping("/route/base/delRoute")
-    public Integer delRoute(@Valid @RequestBody RouteIdForm routeDelForm) {
-        return baseRouteService.delRoute(routeDelForm);
+    public Result<?> delRoute(@Valid @RequestBody RouteIdForm routeDelForm) {
+        return Result.ok(baseRouteService.delRoute(routeDelForm));
     }
 
     /**
      * 可跳过认证路径刷新
+     *
      * @return
      */
     @PostMapping("/route/base/refresh")
-    public String baseRouteRefresh() {
+    public Result<?> baseRouteRefresh() {
         baseRouteService.baseRouteRefresh();
-        return "refresh success";
+        return Result.ok();
     }
 }
