@@ -193,18 +193,18 @@ public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventP
             stripFilter.setArgs(stripParams);
             fdList.add(stripFilter);
         }
-        //添加跳过认证过滤器
-        FilterDefinition cacheFilter = new FilterDefinition();
-        Map<String, String> cacheParams = new HashMap<>(8);
-        cacheFilter.setName("Skip");
-        cacheFilter.setArgs(cacheParams);
-        fdList.add(cacheFilter);
-        //添加认证过滤器
-        FilterDefinition authFilter = new FilterDefinition();
-        Map<String, String> authParams = new HashMap<>(8);
-        authFilter.setName("Auth");
-        authFilter.setArgs(authParams);
-        fdList.add(authFilter);
+//        //添加跳过认证过滤器
+//        FilterDefinition cacheFilter = new FilterDefinition();
+//        Map<String, String> cacheParams = new HashMap<>(8);
+//        cacheFilter.setName("Skip");
+//        cacheFilter.setArgs(cacheParams);
+//        fdList.add(cacheFilter);
+//        //添加认证过滤器
+//        FilterDefinition authFilter = new FilterDefinition();
+//        Map<String, String> authParams = new HashMap<>(8);
+//        authFilter.setName("Auth");
+//        authFilter.setArgs(authParams);
+//        fdList.add(authFilter);
         //获取额外filter
         String filters = gatewayRoute.getFilters();
         if (null != filters) {

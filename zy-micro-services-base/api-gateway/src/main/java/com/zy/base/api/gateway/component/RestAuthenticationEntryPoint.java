@@ -1,7 +1,7 @@
 package com.zy.base.api.gateway.component;
 
 import cn.hutool.json.JSONUtil;
-import com.zy.apps.common.domain.vo.CommonResult;
+import com.zy.apps.common.domain.vo.Result;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,8 +24,8 @@ public class RestAuthenticationEntryPoint implements ServerAuthenticationEntryPo
     @Override
     public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException e) {
         ServerHttpResponse response = getServerHttpResponse(exchange);
-        String body= JSONUtil.toJsonStr(CommonResult.unauthorized(e.getMessage()));
-        DataBuffer buffer =  response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
+        String body = JSONUtil.toJsonStr(Result.unauthorized(e.getMessage()));
+        DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
         return response.writeWith(Mono.just(buffer));
     }
 
@@ -33,8 +33,8 @@ public class RestAuthenticationEntryPoint implements ServerAuthenticationEntryPo
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.OK);
         response.getHeaders().set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        response.getHeaders().set("Access-Control-Allow-Origin","*");
-        response.getHeaders().set("Cache-Control","no-cache");
+        response.getHeaders().set("Access-Control-Allow-Origin", "*");
+        response.getHeaders().set("Cache-Control", "no-cache");
         return response;
     }
 }

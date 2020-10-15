@@ -1,7 +1,7 @@
 package com.zy.base.api.gateway.component;
 
 import cn.hutool.json.JSONUtil;
-import com.zy.apps.common.domain.vo.CommonResult;
+import com.zy.apps.common.domain.vo.Result;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.access.AccessDeniedException;
@@ -24,7 +24,7 @@ public class RestfulAccessDeniedHandler implements ServerAccessDeniedHandler {
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, AccessDeniedException denied) {
         ServerHttpResponse response = getServerHttpResponse(exchange);
-        String body= JSONUtil.toJsonStr(CommonResult.forbidden(denied.getMessage()));
+        String body= JSONUtil.toJsonStr(Result.forbidden(denied.getMessage()));
         DataBuffer buffer =  response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
         return response.writeWith(Mono.just(buffer));
     }

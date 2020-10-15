@@ -1,7 +1,6 @@
 package com.zy.base.oauthservice.controller;
 
 import com.zy.apps.common.constant.AuthConstant;
-import com.zy.apps.common.domain.vo.CommonResult;
 import com.zy.base.oauthservice.entity.domain.Oauth2TokenDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -25,14 +24,14 @@ public class AuthController {
     private TokenEndpoint tokenEndpoint;
 
     @PostMapping("/oauth/token")
-    public CommonResult<Oauth2TokenDto> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters) throws HttpRequestMethodNotSupportedException {
+    public Oauth2TokenDto postAccessToken(Principal principal, @RequestParam Map<String, String> parameters) throws HttpRequestMethodNotSupportedException {
         OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
         Oauth2TokenDto oauth2TokenDto = Oauth2TokenDto.builder()
-                .accessToken(oAuth2AccessToken.getValue())
-                .refreshToken(oAuth2AccessToken.getRefreshToken().getValue())
+                .access_token(oAuth2AccessToken.getValue())
+                .refresh_token(oAuth2AccessToken.getRefreshToken().getValue())
                 .expiresIn(oAuth2AccessToken.getExpiresIn())
                 .tokenHead(AuthConstant.JWT_TOKEN_PREFIX).build();
 
-        return CommonResult.success(oauth2TokenDto);
+        return oauth2TokenDto;
     }
 }

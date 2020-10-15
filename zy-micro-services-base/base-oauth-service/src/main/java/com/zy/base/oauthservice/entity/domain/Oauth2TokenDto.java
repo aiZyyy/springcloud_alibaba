@@ -17,11 +17,11 @@ public class Oauth2TokenDto {
     /**
      * 访问令牌
      */
-    private String accessToken;
+    private String access_token;
     /**
      * 刷令牌
      */
-    private String refreshToken;
+    private String refresh_token;
     /**
      * 访问令牌头前缀
      */
