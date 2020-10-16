@@ -25,9 +25,9 @@ public class Oauth2TokenDto {
     /**
      * 访问令牌头前缀
      */
-    private String tokenHead;
+    private String token_head;
     /**
      * 有效时间（秒）
      */
-    private int expiresIn;
+    private int expires_in;
 }

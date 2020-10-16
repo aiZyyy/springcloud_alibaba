@@ -29,9 +29,8 @@ public class AuthController {
         Oauth2TokenDto oauth2TokenDto = Oauth2TokenDto.builder()
                 .access_token(oAuth2AccessToken.getValue())
                 .refresh_token(oAuth2AccessToken.getRefreshToken().getValue())
-                .expiresIn(oAuth2AccessToken.getExpiresIn())
-                .tokenHead(AuthConstant.JWT_TOKEN_PREFIX).build();
-
+                .expires_in(oAuth2AccessToken.getExpiresIn())
+                .token_head(AuthConstant.JWT_TOKEN_PREFIX).build();
         return oauth2TokenDto;
     }
 }

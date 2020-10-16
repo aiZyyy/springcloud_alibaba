@@ -6,8 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.zy.apps.common.constant.GatewayConstant;
 import com.zy.apps.common.kits.DozerBeanKit;
 import com.zy.apps.common.utils.MapperUtil;
-import com.zy.base.routeservice.domain.entity.BaseRoute;
-import com.zy.base.routeservice.domain.entity.BaseRouteExample;
+import com.zy.base.routeservice.domain.entity.*;
 import com.zy.base.routeservice.domain.form.RouteForm;
 import com.zy.base.routeservice.domain.form.RouteIdForm;
 import com.zy.base.routeservice.domain.form.RouteUpdateForm;
@@ -15,11 +14,6 @@ import com.zy.base.routeservice.mapper.BaseRouteMapper;
 import com.zy.base.routeservice.service.BaseRouteService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.gateway.filter.FilterDefinition;
-import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
-import org.springframework.cloud.gateway.route.RouteDefinition;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,9 +30,7 @@ import java.util.*;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventPublisherAware {
-
-    private ApplicationEventPublisher publisher;
+public class BaseRouteServiceImpl implements BaseRouteService {
 
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
@@ -146,12 +138,6 @@ public class BaseRouteServiceImpl implements BaseRouteService, ApplicationEventP
         baseRoutes.stream().forEach(item -> map.put(item.getRouteId(), JSON.toJSONString(assembleRouteDefinition(item))));
         redisTemplate.opsForHash().putAll(GatewayConstant.GATEWAY_ROUTES, map);
     }
-
-    @Override
-    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
-        this.publisher = applicationEventPublisher;
-    }
-
 
     /**
      * 转换为RouteDefinition类型
