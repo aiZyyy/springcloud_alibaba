@@ -1,6 +1,5 @@
 package com.zy.base.api.gateway.config;
 
-import cn.hutool.core.util.ArrayUtil;
 import com.zy.apps.common.constant.AuthConstant;
 import com.zy.base.api.gateway.authorization.AuthorizationManager;
 import com.zy.base.api.gateway.component.RestAuthenticationEntryPoint;
