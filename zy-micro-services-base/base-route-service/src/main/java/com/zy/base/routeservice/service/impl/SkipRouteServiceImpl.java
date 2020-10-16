@@ -77,7 +77,7 @@ public class SkipRouteServiceImpl implements SkipRouteService {
 
     @Override
     public void skipRouteRefresh() {
-        redisTemplate.opsForHash().delete(GatewayConstant.SKIP_ROUTES);
+        redisTemplate.delete(GatewayConstant.SKIP_ROUTES);
         List<SkipRoute> skipRoutes = skipRouteMapper.selectByExample(new SkipRouteExample());
         HashMap<String, String> map = new HashMap<>();
         skipRoutes.stream().forEach(item -> map.put(item.getUrl(), "0"));

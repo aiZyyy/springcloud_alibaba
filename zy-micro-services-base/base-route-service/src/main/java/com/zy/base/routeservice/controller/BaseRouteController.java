@@ -84,7 +84,7 @@ public class BaseRouteController {
     }
 
     /**
-     * 可跳过认证路径刷新
+     * 认证路径刷新
      *
      * @return
      */

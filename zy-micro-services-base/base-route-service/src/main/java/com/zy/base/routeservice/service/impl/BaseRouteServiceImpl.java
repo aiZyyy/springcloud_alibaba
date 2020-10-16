@@ -101,10 +101,10 @@ public class BaseRouteServiceImpl implements BaseRouteService {
     public Integer openRoute(RouteIdForm routeForm) {
         String routeId = routeForm.getRouteId();
         BaseRouteExample gatewayRouteExample = new BaseRouteExample();
-        gatewayRouteExample.createCriteria().andRouteIdEqualTo(routeId).andEnableEqualTo(1);
+        gatewayRouteExample.createCriteria().andRouteIdEqualTo(routeId).andEnableEqualTo(0);
         List<BaseRoute> gatewayRoutes = gatewayRouteMapper.selectByExample(gatewayRouteExample);
         if (CollectionUtils.isNotEmpty(gatewayRoutes)) {
-            BaseRoute gatewayRoute = BaseRoute.builder().enable(0).build();
+            BaseRoute gatewayRoute = BaseRoute.builder().enable(1).build();
             int update = gatewayRouteMapper.updateByExampleSelective(gatewayRoute, gatewayRouteExample);
             RouteDefinition routeDefinition = assembleRouteDefinition(gatewayRoutes.get(0));
             redisTemplate.opsForHash().put(GatewayConstant.GATEWAY_ROUTES, routeForm.getRouteId(), JSON.toJSONString(routeDefinition));
@@ -118,10 +118,10 @@ public class BaseRouteServiceImpl implements BaseRouteService {
     public Integer delRoute(RouteIdForm routeForm) {
         String routeId = routeForm.getRouteId();
         BaseRouteExample gatewayRouteExample = new BaseRouteExample();
-        gatewayRouteExample.createCriteria().andRouteIdEqualTo(routeId).andEnableEqualTo(0);
+        gatewayRouteExample.createCriteria().andRouteIdEqualTo(routeId).andEnableEqualTo(1);
         BaseRoute baseRoute = MapperUtil.getFirstOrNull(gatewayRouteMapper.selectByExample(gatewayRouteExample));
         if (Objects.nonNull(baseRoute)) {
-            BaseRoute gatewayRoute = BaseRoute.builder().enable(1).build();
+            BaseRoute gatewayRoute = BaseRoute.builder().enable(0).build();
             int update = gatewayRouteMapper.updateByExampleSelective(gatewayRoute, gatewayRouteExample);
             redisTemplate.opsForHash().delete(GatewayConstant.GATEWAY_ROUTES, baseRoute.getRouteId());
             return update;
@@ -132,7 +132,7 @@ public class BaseRouteServiceImpl implements BaseRouteService {
 
     @Override
     public void baseRouteRefresh() {
-        redisTemplate.opsForHash().delete(GatewayConstant.GATEWAY_ROUTES);
+        redisTemplate.delete(GatewayConstant.GATEWAY_ROUTES);
         List<BaseRoute> baseRoutes = findListAll();
         HashMap<String, String> map = new HashMap<>();
         baseRoutes.stream().forEach(item -> map.put(item.getRouteId(), JSON.toJSONString(assembleRouteDefinition(item))));
@@ -208,7 +208,6 @@ public class BaseRouteServiceImpl implements BaseRouteService {
         Map<String, String> predicateParams = new HashMap<>(8);
         predicate.setName("Path");
         predicateParams.put("pattern", gatewayRoute.getPath());
-        predicateParams.put("pathPattern", gatewayRoute.getPath());
         predicate.setArgs(predicateParams);
         pdList.add(predicate);
         //获取额外Predicates
