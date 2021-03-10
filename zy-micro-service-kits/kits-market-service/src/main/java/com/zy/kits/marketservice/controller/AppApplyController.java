@@ -32,7 +32,7 @@ public class AppApplyController implements AppApplyServiceApi {
     }
 
     @Override
-    @PostMapping("/app/selectpublickey")
+    @PostMapping("/app/selectPublicKey")
     public AppPublicKeyVo selectPublicKey(@RequestBody @Valid AppIdForm appPublicKeyForm) {
         return appApplyService.selectPublicKey(appPublicKeyForm);
     }
